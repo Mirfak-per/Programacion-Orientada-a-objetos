@@ -4,8 +4,6 @@
  */
 package modelo;
 
-import javax.print.attribute.standard.MediaSize;
-
 /**
  *
  * @author PAAPCA02LC0800
