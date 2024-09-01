@@ -47,16 +47,22 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "nombre=" + nombre + ", prendasAdquiridas=" + prendasAdquiridas + ", numeroCliente=" + numeroCliente + '}';
+        return """
+               Cliente:
+               nombre=""" + nombre + "\nprendasAdquiridas=" +
+                prendasAdquiridas + "\nnumeroCliente=" + numeroCliente + '\n';
     }
- 
+ //
     //metodos
     public void realizarCompra(PrendaVestir prenda){
-    
+        setPrendasAdquiridas(prenda.getNombre());
     }
     
-    private void devolverPrenda(PrendaVestir prenda){
-    
+    public void devolverPrenda(PrendaVestir prenda){
+        System.out.println("La prenda devuelta es: "+getPrendasAdquiridas());
+        int aux = prenda.getDisponibilidad() +1;
+        System.out.println("La nueva disponibilidad es de: "+aux);
+        prenda.setDisponibilidad(aux);
     }
     
 }

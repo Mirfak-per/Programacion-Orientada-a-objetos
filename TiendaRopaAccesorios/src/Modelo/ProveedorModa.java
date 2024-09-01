@@ -15,9 +15,9 @@ public class ProveedorModa {
     }
 
     public ProveedorModa(String codigoProveedor, String nombre, String prendasSuministradas) {
-        this.codigoProveedor = codigoProveedor;
-        this.nombre = nombre;
-        this.prendasSuministradas = prendasSuministradas;
+        setCodigoProveedor(codigoProveedor);
+        setNombre(nombre);
+        setPrendasSuministradas(prendasSuministradas);
     }
 
     public String getCodigoProveedor() {
@@ -43,10 +43,13 @@ public class ProveedorModa {
     public void setPrendasSuministradas(String prendasSuministradas) {
         this.prendasSuministradas = prendasSuministradas;
     }
-
+//
     @Override
     public String toString() {
-        return "ProveedorModa{" + "codigoProveedor=" + codigoProveedor + ", nombre=" + nombre + ", prendasSuministradas=" + prendasSuministradas + '}';
+        return """
+               ProveedorModa:
+               codigoProveedor=""" + codigoProveedor + "\nnombre=" + nombre +
+                "\nprendasSuministradas=" + prendasSuministradas + '\n';
     }
 
 }

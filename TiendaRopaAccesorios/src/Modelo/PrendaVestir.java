@@ -10,12 +10,12 @@ package Modelo;
  */
 public class PrendaVestir {
         private String codigo,nombre,marca,categoria;
-        private boolean disponibilidad;
+        private int disponibilidad;
 
     public PrendaVestir() {
     }
 
-    public PrendaVestir(String codigo, String nombre, String marca, String categoria, boolean disponibilidad) {
+    public PrendaVestir(String codigo, String nombre, String marca, String categoria, int disponibilidad) {
         setCodigo(codigo);
         setNombre(nombre);
         setMarca(marca);
@@ -46,7 +46,7 @@ public class PrendaVestir {
     public void setMarca(String marca) {
         this.marca = marca;
     }
-
+//
     public String getCategoria() {
         return categoria;
     }
@@ -55,25 +55,31 @@ public class PrendaVestir {
         this.categoria = categoria;
     }
 
-    public boolean isDisponibilidad() {
+    public int getDisponibilidad() {
         return disponibilidad;
     }
 
-    public void setDisponibilidad(boolean disponibilidad) {
+    public void setDisponibilidad(int disponibilidad) {
         this.disponibilidad = disponibilidad;
     }
 
     @Override
     public String toString() {
-        return "PrendaVestir{" + "codigo=" + codigo + ", nombre=" + nombre + ", marca=" + marca + ", categoria=" + categoria + ", disponibilidad=" + disponibilidad + '}';
+        return """
+               PrendaVestir:
+               codigo=""" + codigo + "\nnombre=" + nombre + "\nmarca=" + marca + "\ncategoria=" +
+                categoria +"\ndisponibilidad=" + disponibilidad + '\n';
     }
-        
         //metodos
     
     public void vender(Cliente cliente){
-    
+    //Registra la venta de la prenda a un cliente.
+    cliente.realizarCompra(this);
+    int aux = getDisponibilidad() -1;
+        System.out.println("La nueva disponibilidad es de: "+aux);
+        setDisponibilidad(aux);
     }
-    public void reponerInventario(){
-    
+    public void reponerInventario(){ 
+        System.out.println("La disponibilidad del producto es de: "+ getDisponibilidad());       
     }
 }

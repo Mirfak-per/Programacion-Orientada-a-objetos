@@ -15,9 +15,9 @@ private String catalogoPrendas,clientesRegistrados,proveedoresActivos;
     }
 
     public SistemaGestión(String catalogoPrendas, String clientesRegistrados, String proveedoresActivos) {
-        this.catalogoPrendas = catalogoPrendas;
-        this.clientesRegistrados = clientesRegistrados;
-        this.proveedoresActivos = proveedoresActivos;
+        setCatalogoPrendas(catalogoPrendas);
+        setClientesRegistrados(clientesRegistrados);
+        setProveedoresActivos(proveedoresActivos);
     }
 
     public String getCatalogoPrendas() {
@@ -46,24 +46,36 @@ private String catalogoPrendas,clientesRegistrados,proveedoresActivos;
 
     @Override
     public String toString() {
-        return "SistemaGesti\u00f3n{" + "catalogoPrendas=" + catalogoPrendas + ", clientesRegistrados=" + clientesRegistrados + ", proveedoresActivos=" + proveedoresActivos + '}';
+        return """
+               SistemaGestion:
+               catalogoPrendas=""" + catalogoPrendas + "\nclientesRegistrados=" +
+                clientesRegistrados + "\nproveedoresActivos=" + proveedoresActivos + '\n';
     }
 
 //metodos
     
     private void registrarPrenda(PrendaVestir prenda){
-    
+        setCatalogoPrendas(prenda.getNombre());
     }
     
     private void registrarCliente(Cliente cliente){
-    
+        setClientesRegistrados(cliente.getNombre());
     }
-    
-    private void verificarDisponibilidad(PrendaVestir prenda){
-    
+    //
+    public void verificarDisponibilidad(PrendaVestir prenda){
+    if (prenda.getDisponibilidad() >= 0){
+        System.out.println("El producto tiene disponibilidad");
+    } else{
+        System.out.println("El producto no tiene disponibilidad");
     }
-    
-    private void generarInformeVentas(){
-    
+    }
+    public void generarInformeVentas(){
+        System.out.println("*******************");
+        System.out.println("*INFORME DETALLADO*");
+        System.out.println("*******************");
+        System.out.println("Catalogo\n"+getCatalogoPrendas());
+        System.out.println("Clientes\n"+getClientesRegistrados());
+        System.out.println("proveedores\n"+getProveedoresActivos());
+        System.out.println("*******************");
     }
 }
