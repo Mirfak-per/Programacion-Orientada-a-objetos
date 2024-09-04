@@ -38,10 +38,11 @@ public class Vehiculo {
             && = and
             == = compara
                 String:
-                    equals: compara cadena de strings
-                    equalsIgnoreCase: compara cadena de strings sin importar las mayusculas
-                    trim: elimina espacios vacios 
+                    .equals: compara cadena de strings
+                    .equalsIgnoreCase: compara cadena de strings sin importar las mayusculas
+                    .trim: elimina espacios vacios 
     */
+    
     //que la patente no este vacia
     public void setPatente(String patente) {
         if (patente == null || patente.isEmpty()){

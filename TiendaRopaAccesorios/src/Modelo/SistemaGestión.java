@@ -54,11 +54,11 @@ private String catalogoPrendas,clientesRegistrados,proveedoresActivos;
 
 //metodos
     
-    private void registrarPrenda(PrendaVestir prenda){
+    public void registrarPrenda(PrendaVestir prenda){
         setCatalogoPrendas(prenda.getNombre());
     }
     
-    private void registrarCliente(Cliente cliente){
+    public void registrarCliente(Cliente cliente){
         setClientesRegistrados(cliente.getNombre());
     }
     //

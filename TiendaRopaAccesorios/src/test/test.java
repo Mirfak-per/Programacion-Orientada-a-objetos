@@ -25,11 +25,14 @@ public class test {
         ProveedorModa proveedor = new ProveedorModa("Pr01", "Marco", "Pantalon rojo");
         SistemaGestión sig = new SistemaGestión("", "", "");
         sig.verificarDisponibilidad(prenda);
+        sig.registrarCliente(cliente);
+        sig.registrarPrenda(prenda);
         prenda.reponerInventario();
         prenda.vender(cliente);
         cliente.realizarCompra(prenda);
         cliente.devolverPrenda(prenda);
         proveedor.toString();
+        sig.generarInformeVentas();
     }
     
 }
