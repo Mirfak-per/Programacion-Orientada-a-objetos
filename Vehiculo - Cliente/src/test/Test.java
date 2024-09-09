@@ -4,7 +4,6 @@
  */
 package test;
 
-import java.util.Properties;
 import modelo.Propietario;
 import modelo.Vehiculo;
 
@@ -46,10 +45,7 @@ public class Test {
 ////        
 ////        System.out.println("El valor de la patente es " + p1.getVehiculo().getPatente() + ".");
 ////        
-//        p2.mostrarDetalleVehiculo();
-//        p2.mostrarPrecioVehiculo();
-//        p1.estafar();
-//        p2.estafar(8000000);
+
         Vehiculo v1;
         v1 = new Vehiculo("XXXX01", "Gris", "ZZ00", 4,
                 1000000, 'G', true);
@@ -60,5 +56,9 @@ public class Test {
         
         Propietario p1 = new Propietario("Freddy", "Campos", "Puente Alto 1", 50, v1);
         Propietario p2 = new Propietario("Pavel", "Morales", "Puente Alto 10", 34, v2);
-    }
+       p2.mostrarDetalleVehiculo();
+       p2.mostrarPrecioVehiculo();
+       p1.estafar();
+       p2.estafar(8000000);  
+  }
 } 
