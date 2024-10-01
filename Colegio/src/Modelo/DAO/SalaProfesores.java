@@ -19,10 +19,11 @@ public class SalaProfesores {
 //INSTANCIA DE LA LISTA
     public SalaProfesores (){
         //CREA UNA BASE DE DATOS VACIA
-        listaProfesores = new ArrayList<>();    
+  
     }
 
     public SalaProfesores(String idSalaProfesor) {
+        listaProfesores = new ArrayList<>();  
         setIdSalaProfesor(idSalaProfesor);
     }
 
@@ -44,7 +45,9 @@ public class SalaProfesores {
 
     @Override
     public String toString() {
-        return "SalaProfesores{" + "listaProfesores=" + listaProfesores + ", idSalaProfesor=" + idSalaProfesor + '}';
+        return """
+               SalaProfesores:
+               listaProfesores=""" + listaProfesores + "\nidSalaProfesor=" + idSalaProfesor + '\n';
     }
     
     

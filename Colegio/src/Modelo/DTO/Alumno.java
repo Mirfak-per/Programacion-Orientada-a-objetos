@@ -38,7 +38,9 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return "Alumno{" + "persona=" + persona + ", jornada=" + jornada + '}';
+        return """
+               Alumno:
+               persona=""" + persona + "\njornada=" + jornada + '\n';
     }
     
     

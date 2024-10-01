@@ -48,7 +48,10 @@ public class Profesor {
 
     @Override
     public String toString() {
-        return "Profesor{" + "persona=" + persona + ", suedo=" + suedo + ", tieneEstacionamiento=" + tieneEstacionamiento + '}';
+        return """
+               Profesor:
+               persona=""" + persona + "\nsuedo=" + suedo +
+                "\ntieneEstacionamiento=" + tieneEstacionamiento + '\n';
     }
     
     
