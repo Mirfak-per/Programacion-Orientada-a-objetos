@@ -61,8 +61,10 @@ public class Cliente {
         Medicamento medicamento = new Medicamento();
         System.out.println("El cliente devuelve el medicamento:"+getMedicamentoAdquirido());
         setMedicamentoAdquirido(null);
+        
         int aux = medicamento.getStock()+1;
-                System.out.println("Se a agregado un medicameto dal stock, stock actual: "+aux);
         medicamento.setStock(aux);
+        System.out.println("Se a agregado un medicameto al stock, stock actual: "+medicamento.getStock());
+        
     }
 }

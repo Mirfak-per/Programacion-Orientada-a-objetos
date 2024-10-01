@@ -27,6 +27,7 @@ public class test {
     
         carrito.guardarProducto(producto0);
         carrito.precioTotal(producto0);
+        
         carrito.guardarProducto(producto1);
         carrito.precioTotal(producto1);
         

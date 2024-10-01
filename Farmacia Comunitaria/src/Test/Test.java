@@ -22,19 +22,24 @@ public class Test {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Medicamento medicamento = new Medicamento("analgesico", "ME01", "Ibuprofeno", 10,new Date(2024, 8, 30, 14, 6));
+        Medicamento medicamento = new Medicamento("analgesico", "ME01", "Ibuprofeno",20,new Date(2024, 8, 30, 14, 6));
+        
         Cliente cliente = new Cliente("CLI01","Alan", "");
+        
         Proveedor_Farmaceutico proveedor = new Proveedor_Farmaceutico("Pro01", "Juan", "");
+        
         Sistema_de_Gestion_de_Inventarios sgi = new Sistema_de_Gestion_de_Inventarios("", "", "");
                         
         sgi.registrarCliente(cliente);
         sgi.registrarMedicamento(medicamento);
         sgi.registrarProveedor(proveedor);
         
-        cliente.realizarCompra(medicamento);
-        cliente.devolverMedicamento();
+        cliente.realizarCompra(medicamento); 
         
         medicamento.vender(cliente);
+        cliente.devolverMedicamento();
+        
+
         sgi.generarInformeVentas();
     }
     

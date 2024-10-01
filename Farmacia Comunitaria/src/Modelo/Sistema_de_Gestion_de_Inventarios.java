@@ -62,6 +62,7 @@ public class Sistema_de_Gestion_de_Inventarios {
     public void registrarProveedor(Proveedor_Farmaceutico proveedor){
         setProveedorActual(proveedor.getNombre());
     }
+    
     public void generarInformeVentas(){
         System.out.println(
                 "\nEl ultimo cliente en el sistema es: "+getClienteActual()+

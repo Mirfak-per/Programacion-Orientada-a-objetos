@@ -17,8 +17,8 @@ public class Carrito_Compras {
     }
 
     public Carrito_Compras(String productos, double total) {
-        this.productos = productos;
-        this.total = total;
+        setProductos(productos);
+        setTotal(total);
     }
 
     public String getProductos() {
