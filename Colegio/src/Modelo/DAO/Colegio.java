@@ -104,9 +104,9 @@ public void listarprofesores(){
         aux.listarProfesores();
     }
 }
-public boolean actualizarIdCurso(Curso curso, String nuevoId) {
+public boolean actualizarIdCurso(String IdAntiguo, String nuevoId) {
     for (Curso aux : listaCursos) {
-        if (aux.getIdCruso().equals(curso.getIdCruso())) {
+        if (aux.getIdCruso().equals(IdAntiguo)) {
             aux.setIdCruso(nuevoId);
             return true; 
         }
@@ -114,9 +114,9 @@ public boolean actualizarIdCurso(Curso curso, String nuevoId) {
     return false; 
 }
 
-public boolean actualizarSalaProfesores(SalaProfesores salaProfesores, String nuevoId){
+public boolean actualizarSalaProfesores(String Idantiguo, String nuevoId){
     for (SalaProfesores aux : listaProfesores) {
-        if (aux.getIdSalaProfesor().equalsIgnoreCase(salaProfesores.getIdSalaProfesor())) {
+        if (aux.getIdSalaProfesor().equalsIgnoreCase(Idantiguo)) {
             aux.setIdSalaProfesor(nuevoId);
             return true;
         }
