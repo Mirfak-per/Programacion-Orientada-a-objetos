@@ -33,15 +33,16 @@ public class Alumno {
     }
 
     public void setJornada(String jornada) {
-        this.jornada = jornada;
+        if (jornada.equalsIgnoreCase("Mañana") || jornada.equalsIgnoreCase("Tarde")) {
+          this.jornada = jornada;  
+        } else {
+            System.out.println("Error, debe ser Mañana o Tarde");
+        }
     }
-
     @Override
     public String toString() {
         return """
                Alumno:
                persona=""" + persona + "\njornada=" + jornada + '\n';
-    }
-    
-    
+    } 
 }

@@ -50,7 +50,6 @@ public class SalaProfesores {
                listaProfesores=""" + listaProfesores + "\nidSalaProfesor=" + idSalaProfesor + '\n';
     }
     
-    
     public boolean agregarProfesor(Profesor profesor){
     return listaProfesores.add(profesor);
     }
@@ -89,7 +88,7 @@ public class SalaProfesores {
     }
     
     private void obtenerSueldo(Profesor profesor){
-        System.out.println(profesor.getSuedo());
+        System.out.println(profesor.getSueldo());
     }
     
     private void confirmarEstacionamineto(Profesor profesor){

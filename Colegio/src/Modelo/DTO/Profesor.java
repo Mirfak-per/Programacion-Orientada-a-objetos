@@ -10,15 +10,15 @@ package Modelo.DTO;
  */
 public class Profesor {
     private Persona persona;
-    private double suedo;
+    private double sueldo;
     private boolean tieneEstacionamiento;
 
     public Profesor() {
     }
 
-    public Profesor(Persona persona, double suedo, boolean tieneEstacionamiento) {
+    public Profesor(Persona persona, double sueldo, boolean tieneEstacionamiento) {
         setPersona(persona);
-        setSuedo(suedo);
+        setSueldo(sueldo);
         setTieneEstacionamiento(tieneEstacionamiento);
     }
 
@@ -30,12 +30,16 @@ public class Profesor {
         this.persona = persona;
     }
 
-    public double getSuedo() {
-        return suedo;
+    public double getSueldo() {
+        return sueldo;
     }
 
-    public void setSuedo(double suedo) {
-        this.suedo = suedo;
+    public void setSueldo(double sueldo) {
+        if (sueldo >= 100000) {
+          this.sueldo = sueldo;  
+        } else {
+            System.out.println("Error, el sueldo debe ser mínimo 100000");
+        }   
     }
 
     public boolean isTieneEstacionamiento() {
@@ -50,9 +54,7 @@ public class Profesor {
     public String toString() {
         return """
                Profesor:
-               persona=""" + persona + "\nsuedo=" + suedo +
+               persona=""" + persona + "\nsuedo=" + sueldo +
                 "\ntieneEstacionamiento=" + tieneEstacionamiento + '\n';
-    }
-    
-    
+    } 
 }

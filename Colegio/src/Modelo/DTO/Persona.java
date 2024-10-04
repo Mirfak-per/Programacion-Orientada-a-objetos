@@ -27,7 +27,11 @@ public class Persona {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        if (nombre.trim().length() >= 2 && nombre.equalsIgnoreCase(nombre)) {
+         this.nombre = nombre;   
+        } else {
+            System.out.println("Nombre incorrecto, debe tener más de 2 caracteres.");
+        }  
     }
 
     public String getApellido() {
@@ -35,7 +39,11 @@ public class Persona {
     }
 
     public void setApellido(String apellido) {
-        this.apellido = apellido;
+        if (apellido.trim().length() >= 2 && apellido.equalsIgnoreCase(apellido)) {
+          this.apellido = apellido;  
+        } else {
+            System.out.println("Apellido incorrecto, debe tener más de 2 caracteres");
+        }  
     }
 
     public String getRut() {
@@ -51,7 +59,11 @@ public class Persona {
     }
 
     public void setEdad(int edad) {
-        this.edad = edad;
+        if (edad > 6) {
+          this.edad = edad;  
+        } else {
+            System.out.println("Error, la edad debe ser mayor a 6");
+        } 
     }
 
     @Override
@@ -59,7 +71,5 @@ public class Persona {
         return """
                Persona:
                nombre=""" + nombre + "\napellido=" + apellido + "\nrut=" + rut + "\nedad=" + edad + '\n';
-    }
-    
-    
+    } 
 }
