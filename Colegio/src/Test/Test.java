@@ -27,7 +27,7 @@ Persona p1 = new Persona("Gabriel", "Hernandez", "111-1", 19);
 Alumno a1 = new Alumno(p1, "Mañana");
 
 // 
-Persona p2 = new Persona("Maria", "Lopez", "222-2", 25);
+Persona p2 = new Persona("Maria", "Lopez", "222-2", 9);
 Alumno a2 = new Alumno(p2, "Tarde");
 
 //
@@ -80,13 +80,14 @@ c2.actualizarAlumno(a5);
 
 SP1.agregarProfesor(ps1);
 SP1.agregarProfesor(ps2);
-SP1.agregarProfesor(ps3);
+     SP1.agregarProfesor(ps3);
 //SP1.listarProfesores();
 SP1.actualizarProfesor(ps4);
 //SP1.listarProfesores();
 
 colegio.agregarCurso(c1);
 colegio.agregarCurso(c2);
+
 colegio.agregarSalaProfesores(SP1);
 
 ////

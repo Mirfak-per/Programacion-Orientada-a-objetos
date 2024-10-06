@@ -39,7 +39,7 @@ public class Persona {
     }
 
     public void setApellido(String apellido) {
-        if (apellido.trim().length() >= 2 && apellido.equalsIgnoreCase(apellido)) {
+        if (apellido.trim().length() >= 2) {
           this.apellido = apellido;  
         } else {
             System.out.println("Apellido incorrecto, debe tener más de 2 caracteres");
