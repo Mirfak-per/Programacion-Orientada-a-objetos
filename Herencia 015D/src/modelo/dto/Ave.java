@@ -40,7 +40,6 @@ public class Ave extends Animal {
     
     // SOBRECARGA: CUANDO TIENE EL MISMO NOMBRE QUE EL METODO DEL PADRE
     // PERO SE LE AGREGAN MAS PARAMETROS
-    
     public void comer(String alimento, String lugar) {
         System.out.println("Ave: Estoy comiendo "+alimento+" en "+lugar+"....");
     }
