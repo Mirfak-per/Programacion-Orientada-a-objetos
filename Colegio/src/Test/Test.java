@@ -69,6 +69,7 @@ Colegio colegio = new Colegio();
         
 c1.agregarAlumno(a1);
 c1.agregarAlumno(a2);
+
 c2.agregarAlumno(a3);
 c2.agregarAlumno(a4);
 //c2.listarAlumnos();
@@ -91,16 +92,16 @@ colegio.agregarSalaProfesores(SP1);
 ////
 //colegio.listarCurso();
 //colegio.listarAlumnos("0015D");
+
 //colegio.listarSalaProfesores();
 //colegio.listarprofesores();
-//colegio.listarSalaProfesores();
 
 ////Comprueba si existen 
 //colegio.buscarCurso("0020F");
 //colegio.buscarSalaProfesores("001");
 
 ////actualizar
-//colegio.actualizarIdCurso(c2, "0012A");
-//colegio.actualizarSalaProfesores(SP1,"002");
+colegio.actualizarIdCurso("0020F", "0012A");
+colegio.actualizarSalaProfesores("001","002");
     }  
 }

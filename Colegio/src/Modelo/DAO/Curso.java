@@ -13,9 +13,7 @@ import java.util.ArrayList;
  */
 public class Curso {
         private ArrayList<Alumno> listaAlumno;
-        private String idCruso;
-        
-        
+        private String idCruso;     
  
 //INSTANCIA DE LA LISTA
 public Curso (){
@@ -50,8 +48,6 @@ public Curso (){
                Curso:
                listaAlumno=""" + listaAlumno + "\nidCruso=" + idCruso + '\n';
     }
-
-
     
 public boolean agregarAlumno(Alumno alumno){
 return listaAlumno.add(alumno);
@@ -96,11 +92,4 @@ public void obtenerJornada(String rut){
         System.out.println(aux.getJornada());
     }
 }
-
-
 }
-
-
-    
-
-

@@ -62,7 +62,6 @@ public void buscarCurso(String idCurso){
     if (aux2 == false) {
        System.out.println("El curso no existe"); 
     }
-    
 }
 
 public void buscarSalaProfesores(String idSalaProfesores){
@@ -78,7 +77,6 @@ public void buscarSalaProfesores(String idSalaProfesores){
     if (aux2 == false) {
        System.out.println("La sala de profesores  no existe"); 
     }
-    
 }
 
 public void listarCurso(){
@@ -123,6 +121,4 @@ public boolean actualizarSalaProfesores(String Idantiguo, String nuevoId){
     }
     return false;
 }
-
-
 }
