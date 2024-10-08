@@ -4,11 +4,13 @@
  */
 package modelo.dto;
 
+import Interfaces.Metodoscrudfake;
+
 /**
  *
  * @author PAAPCA02LC0800
  */
-public class Animal {
+public abstract class Animal implements Metodoscrudfake{
     // EN LA CLASE PADRE SE DECLARAN PROTECTED
     // PARA SOLO LOS HIJOS LO VEAN
     protected String nombre;
@@ -95,5 +97,6 @@ public class Animal {
     public void comer(String alimento) {
         System.out.println("Animal: Estoy comiendo "+alimento+"....");
     }
+
     
 }

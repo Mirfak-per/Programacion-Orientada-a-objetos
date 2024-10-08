@@ -10,6 +10,7 @@ package modelo.dto;
  */
 public class Ave extends Animal {
     private int cantAlas;
+    private String idAve;
 
     public Ave() {
         this.cantAlas = 2;
@@ -42,6 +43,11 @@ public class Ave extends Animal {
     // PERO SE LE AGREGAN MAS PARAMETROS
     public void comer(String alimento, String lugar) {
         System.out.println("Ave: Estoy comiendo "+alimento+" en "+lugar+"....");
+    }
+
+    @Override
+    public String mostrarInformacion() {
+        return "Ave{" + "cantAlas=" + cantAlas + '}' + super.toString();
     }
     
 }

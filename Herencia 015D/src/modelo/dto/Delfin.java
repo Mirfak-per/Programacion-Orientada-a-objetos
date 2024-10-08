@@ -10,13 +10,15 @@ package modelo.dto;
  */
 public class Delfin extends Animal {
     private int cantAletas;
-
+    private String idDelfin;
+    
     public Delfin() {
     }
 
-    public Delfin(int cantAletas, String nombre, int edad, int peso, int altura, char sexo, boolean isVivo) {
+    public Delfin(int cantAletas, String nombre, int edad, int peso, int altura, char sexo, boolean isVivo,String idDelfin) {
         super(nombre, edad, peso, altura, sexo, isVivo);
         setCantAletas(cantAletas);
+         this.idDelfin = idDelfin;
     }
 
     public int getCantAletas() {
@@ -39,6 +41,11 @@ public class Delfin extends Animal {
     
     public void comer(String alimento, String lugar) {
         System.out.println("Delfin: Estoy comiendo "+alimento+" en "+lugar+"....");
+    }
+
+    @Override
+    public String mostrarInformacion() {
+    return "Delfin{" + "cantAletas=" + cantAletas + '}' + super.toString();  
     }
     
 }

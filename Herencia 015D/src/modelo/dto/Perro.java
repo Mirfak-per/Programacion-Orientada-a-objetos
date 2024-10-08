@@ -10,7 +10,8 @@ package modelo.dto;
  */
 public class Perro extends Animal {
     private int cantPatas;
-
+    private String idPerro;
+    
     public Perro() {
     }
 
@@ -45,5 +46,10 @@ public class Perro extends Animal {
     
     public void ladrar() {
         System.out.println("Perro ladrando...");
+    }
+
+    @Override
+    public String mostrarInformacion() {
+        return "Perro{" + "cantPatas=" + cantPatas + '}' + super.toString();
     }
 }
