@@ -1,0 +1,48 @@
+Ejercicio Tipo Prueba:
+
+Contexto:
+	- Desarrollar una aplicación para gestiar una tienda. Esta te permite gestionar clientes
+	(registrar clientes, gestionar productos y crear predidos).
+	- Los clientes pueden agregar productos a un pedido y el sistema debe calcular el total
+	y aplicar un descuento.
+
+Métodos:
+	- Se solicita implementar un metodo que permita recorrer la lista de productos
+	para poder calcular el valor total del pedido. Acá se debe descontar un 10% si hay
+	más de 5 productos.
+
+Clases:
+	- Cliente: rut, nombre, apellido, correo.
+	- Producto: id, nombre, precio. ( Padre / Abstract )
+		- ProductoGeneral: agregar 3 campos. (Hija) / debe llevar el % descuento
+		- ProductoDefectuoso: agregar 3 campos. (Hija) debe llevar el % descuento
+Dao: 
+	- Pedido: (se entiende que es el dao) "son los productos del cliente"
+		- El dao debe irse actualizando cada vez que crean o modifican un pedido.
+		- Debe permitir:
+			- Agregar producto
+			- Buscar producto
+			- modificar producto
+			- Eliminar producto
+			- Listar productos
+		- Analizar la forma de hacer que el pedido corresponda con el cliente.
+
+	- Tienda: (se entiende que es otro dao) "son los productos disponibles"
+		- Debe permitir:
+			- Agregar producto
+			- Buscar producto
+			- modificar producto
+			- Eliminar producto
+			- Listar productos
+Interfaz:
+	- Descuento: aplicarDescuento()
+Main:
+	- Crear 1 cliente
+	- Crear 3 productos
+	- Crear 1 tienda
+	- Crear 1 pedido
+	- Agregar a la tienda los 3 productos
+	- Agregar al pedido 2 productos
+	- Listar los productos de la tienda
+	- Calcular el total del pedido sin descuento
+	- Calcular el total del pedido con descuento ( agregar más productos )
