@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author PAAPCA02LC0805
@@ -126,9 +128,18 @@ public class Login extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
+        //ingresar solamnete cuando es admin - admin
+        String user = txtUser.getText();
+        String pass = txtPass.getText();
+        if (user.equalsIgnoreCase("admin")&& pass.equalsIgnoreCase("admin")){
         this.setVisible(false);
+        principal.setVisible(true);
+        }else{
+            JOptionPane.showConfirmDialog(this, "Credenciales incorrectas");
+        }
+        
         //this.dispose(); //mata la ventana actual
-        principal.setVisible(true);//hace visible la ventana
+        //hace visible la ventana
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
