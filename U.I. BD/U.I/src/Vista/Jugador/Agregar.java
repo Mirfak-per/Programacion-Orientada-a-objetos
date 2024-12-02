@@ -4,6 +4,7 @@
  */
 package Vista.Jugador;
 
+import Modelo.dao.JugadorDAO;
 import javax.swing.JOptionPane;
 
 /**
@@ -271,6 +272,7 @@ public class Agregar extends javax.swing.JFrame {
         }else{
         titular = "No";
         }
+        JugadorDAO dAO = new JugadorDAO();
         
         //Testing
         JOptionPane.showMessageDialog(this, "Jugador Guardado "+rut);

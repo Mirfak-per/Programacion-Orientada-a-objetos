@@ -19,7 +19,8 @@ public class Conexion {
     private String user ="BDtest";
     private String pass ="BDtest";
     //cambia dependiendo de la base de datos que se use     esto es la url de la base de datos
-    private String url  ="jdbc:oracle:thin:"+user+"/"+pass+"@localhost:1521:orcl";
+    //private String url  ="jdbc:oracle:thin:"+user+"/"+pass+"@localhost:1521:orcl";
+    private String url  ="jdbc:oracle:thin:@//localhost:1521/xepdb1";
     
     public Conexion(){
         try {

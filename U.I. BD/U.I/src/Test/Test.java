@@ -22,10 +22,10 @@ public class Test {
         Conexion c = new Conexion();
         //Conexion conexion = new Conexion();
         
-//        Usuario usuario = new Usuario("admin","admin");
-//        UsuarioDAO udao = new UsuarioDAO();
-//        
-//        //test login
+        Usuario usuario = new Usuario("admin","admin");
+        UsuarioDAO udao = new UsuarioDAO();
+        
+        //test login
 //        if ( udao.login(usuario)) {
 //            System.out.println("Login existoso!");
 //        } else{
@@ -33,7 +33,7 @@ public class Test {
 //        }
 
 
-
+//
 Jugador j = new Jugador("AAAA", "111-1", "BBBB","Lolero", "moba", "SI", 16);
 Jugador j2 = new Jugador("CCCC", "111-1", "DDDD","Valorantlero", "shooter", "SI", 20);
 JugadorDAO dao = new JugadorDAO();
@@ -55,9 +55,10 @@ JugadorDAO dao = new JugadorDAO();
 //        } else {
 //            System.out.println("Jugador no eliminado");
 //        }
-
-        Jugador jugadorBuscado = dao.buscarJugador("111-1");
-        System.out.println(jugadorBuscado.toString());
-    }
+//
+//        Jugador jugadorBuscado = dao.buscarJugador("111-1");
+//        System.out.println(jugadorBuscado.toString());
+//    }
     
+}
 }
