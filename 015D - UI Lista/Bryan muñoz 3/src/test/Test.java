@@ -5,10 +5,9 @@
 package test;
 
 import conexion.Conexion;
-import modelo.dao.ProductoDAO;
-import modelo.dao.UsuarioDAO;
-import modelo.dto.Producto;
-import modelo.dto.Usuario;
+import java.util.List;
+import modelo.dao.*;
+import modelo.dto.*;
 
 /**
  *
@@ -19,59 +18,120 @@ public class Test {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {     
-     // Inicializamos la conexión
-        Conexion conexion = new Conexion();
-        if (conexion.getConnection() != null) {
-            System.out.println("Conexión establecida con la base de datos.");
-        } else {
-            System.out.println("Error al conectar con la base de datos.");
-            return; // Salimos si no hay conexión
-        }
-
-        // Prueba ProductoDAO
-        testProductoDAO();
+public static void main(String[] args) {
+    
+    
+    // Inicializamos la conexión
+    Conexion conexion = new Conexion();
+    if (conexion.getConnection() != null) {
+        System.out.println("Conexión establecida con la base de datos.");
+    } else {
+        System.out.println("Error al conectar con la base de datos.");
+        return; // Salimos si no hay conexión
     }
 
-    private static void testProductoDAO() {
-        System.out.println("\n--- TEST ProductoDAO ---");
-        ProductoDAO productoDAO = new ProductoDAO();
+    // Prueba MascotaDAO y DuenoDAO
+    testVeterinariaDAO();
+}
 
-        // Prueba de agregar producto
-        Producto producto = new Producto("Electrónica",123, "Laptop", 50 , 20230101);
-        if (productoDAO.agregarProducto(producto)) {
-            System.out.println("Producto agregado: " + producto);
-        } else {
-            System.out.println("Error al agregar el producto: " + producto);
-        }
+private static void testVeterinariaDAO() {
+    // Creamos instancias de los DAOs
+    MascotaDAO mdao = new MascotaDAO();
+    DuenoDAO ddao = new DuenoDAO();
 
-        // Prueba de modificar producto
-        Producto productoModificado = new Producto("Electrónica",123, "Laptop Pro", 30, 20230101);
-        if (productoDAO.modificarProducto(productoModificado)) {
-            System.out.println("Producto modificado: " + productoModificado);
-        } else {
-            System.out.println("Error al modificar el producto: " + productoModificado);
-        }
+    // 1. Prueba para agregar un dueño
+    testAgregarDueno(ddao);
 
-        // Prueba de eliminar producto
-        if (productoDAO.eliminarProducto("123")) {
-            System.out.println("Producto eliminado con código: 123");
-        } else {
-            System.out.println("Error al eliminar el producto con código: 123");
-        }
+    // 2. Prueba para agregar una mascota
+    testAgregarMascota(mdao);
 
-        // Prueba de buscar producto
-        Producto productoBuscado = productoDAO.buscarProducto(123);
-        if (productoBuscado != null) {
-            System.out.println("Producto encontrado: " + productoBuscado);
-        } else {
-            System.out.println("No se encontró ningún producto con código: 123");
-        }
+    // 3. Prueba para modificar un dueño
+    testModificarDueno(ddao);
 
-        // Prueba de listar productos
-        System.out.println("Listado de productos:");
-        for (Producto p : productoDAO.listarProductos()) {
-            System.out.println(p);
-        }
-    }
+    // 4. Prueba para modificar una mascota
+    testModificarMascota(mdao);
+
+    // 5. Prueba para eliminar un dueño
+    testEliminarDueno(ddao);
+
+    // 6. Prueba para eliminar una mascota
+    testEliminarMascota(mdao);
+
+    // 7. Prueba para buscar un dueño
+    testBuscarDueno(ddao);
+
+    // 8. Prueba para buscar una mascota
+    testBuscarMascota(mdao);
+
+    // 9. Prueba para listar todos los dueños
+    testListarDuenos(ddao);
+
+    // 10. Prueba para listar todas las mascotas
+    testListarMascotas(mdao);
+}
+
+private static void testAgregarDueno(DuenoDAO ddao) {
+    // Crear un dueño para prueba
+    Dueno dueno = new Dueno("12345678-9", "Juan", "Perez", 30, 987654321);
+    boolean resultado = ddao.agregarDueno(dueno);
+    System.out.println("Prueba agregar dueño: " + (resultado ? "Éxito" : "Error"));
+}
+
+private static void testAgregarMascota(MascotaDAO mdao) {
+    // Crear una mascota para prueba
+    Mascota mascota = new Mascota(12345, "12345678-9", 5, new java.util.Date(), "Rex");
+    boolean resultado = mdao.agregarMascota(mascota);
+    System.out.println("Prueba agregar mascota: " + (resultado ? "Éxito" : "Error"));
+}
+
+private static void testModificarDueno(DuenoDAO ddao) {
+    // Modificar un dueño existente
+    Dueno duenoModificado = new Dueno("12345678-9", "Carlos", "Gomez", 35, 987654322);
+    boolean resultado = ddao.modificarDueno(duenoModificado);
+    System.out.println("Prueba modificar dueño: " + (resultado ? "Éxito" : "Error"));
+}
+
+private static void testModificarMascota(MascotaDAO mdao) {
+    // Modificar una mascota existente
+    Mascota mascotaModificada = new Mascota(12345, "12345678-9", 6, new java.util.Date(), "Max");
+    boolean resultado = mdao.modificarMascota(mascotaModificada);
+    System.out.println("Prueba modificar mascota: " + (resultado ? "Éxito" : "Error"));
+}
+
+private static void testEliminarDueno(DuenoDAO ddao) {
+    // Eliminar un dueño
+    boolean resultado = ddao.eliminarDueno("12345678-9");
+    System.out.println("Prueba eliminar dueño: " + (resultado ? "Éxito" : "Error"));
+}
+
+private static void testEliminarMascota(MascotaDAO mdao) {
+    // Eliminar una mascota
+    boolean resultado = mdao.eliminarMascota(12345);
+    System.out.println("Prueba eliminar mascota: " + (resultado ? "Éxito" : "Error"));
+}
+
+private static void testBuscarDueno(DuenoDAO ddao) {
+    // Buscar un dueño por rut
+    Dueno duenoBuscado = ddao.buscarDueno("12345678-9");
+    System.out.println("Prueba buscar dueño: " + (duenoBuscado != null ? "Éxito" : "No encontrado"));
+}
+
+private static void testBuscarMascota(MascotaDAO mdao) {
+    // Buscar una mascota por chip
+    Mascota mascotaBuscada = mdao.buscarMascota(12345);
+    System.out.println("Prueba buscar mascota: " + (mascotaBuscada != null ? "Éxito" : "No encontrada"));
+}
+
+private static void testListarDuenos(DuenoDAO ddao) {
+    // Listar todos los dueños
+    List<Dueno> listaDuenos = ddao.listarDuenos();
+    System.out.println("Prueba listar dueños: " + (listaDuenos.isEmpty() ? "Sin dueños registrados" : "Éxito"));
+}
+
+private static void testListarMascotas(MascotaDAO mdao) {
+    // Listar todas las mascotas
+    List<Mascota> listaMascotas = mdao.listarMascota();
+    System.out.println("Prueba listar mascotas: " + (listaMascotas.isEmpty() ? "Sin mascotas registradas" : "Éxito"));
+}
+
 }

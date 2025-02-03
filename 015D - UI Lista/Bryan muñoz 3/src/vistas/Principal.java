@@ -4,11 +4,13 @@
  */
 package vistas;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.dao.ProductoDAO;
-import modelo.dto.Producto;
+import modelo.dao.*;
+import modelo.dto.*;
 
 /**
  *
@@ -23,9 +25,11 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         listarDatos();
+        listarDatos2();
     }
     
-    ProductoDAO pdao = new ProductoDAO();
+    MascotaDAO mdao = new MascotaDAO();
+    DuenoDAO ddao = new DuenoDAO();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,18 +47,35 @@ public class Principal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        txtChip = new javax.swing.JTextField();
+        txtFechaNac = new javax.swing.JTextField();
+        spnEdad = new javax.swing.JSpinner();
+        txtRutDueno = new javax.swing.JTextField();
+        txtNombreMascota = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtCodigo = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
-        txtFechaIngreso = new javax.swing.JTextField();
-        spnStock = new javax.swing.JSpinner();
-        txtTipoProducto = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblProductos = new javax.swing.JTable();
+        tblMascota = new javax.swing.JTable();
         btnActualizar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblDueno = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txtRut = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
+        spnEdad2 = new javax.swing.JSpinner();
+        txtApellido = new javax.swing.JTextField();
+        btnModificar2 = new javax.swing.JButton();
+        btnGuardar2 = new javax.swing.JButton();
+        btnEliminar2 = new javax.swing.JButton();
+        btnBuscar2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,31 +87,47 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Jugador"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Mascota"));
 
-        jLabel2.setText("Codigo");
+        jLabel2.setText("Chip");
 
-        jLabel3.setText("Nombre:");
+        jLabel3.setText("Fecha de nacimiento");
 
-        jLabel4.setText("Tipo producto:");
+        jLabel4.setText("Rut del dueño");
 
-        jLabel5.setText("Stock");
+        jLabel5.setText("Edad");
 
-        jLabel6.setText("Fecha ingreso");
-
-        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+        txtChip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigoActionPerformed(evt);
+                txtChipActionPerformed(evt);
             }
         });
 
-        txtNombre.setEnabled(false);
+        txtFechaNac.setText("yyyy-MM-dd");
+        txtFechaNac.setEnabled(false);
+        txtFechaNac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaNacActionPerformed(evt);
+            }
+        });
 
-        txtFechaIngreso.setEnabled(false);
+        spnEdad.setEnabled(false);
 
-        spnStock.setEnabled(false);
+        txtRutDueno.setEnabled(false);
+        txtRutDueno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRutDuenoActionPerformed(evt);
+            }
+        });
 
-        txtTipoProducto.setEnabled(false);
+        txtNombreMascota.setEnabled(false);
+        txtNombreMascota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreMascotaActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Nombre Mascota");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,24 +136,20 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3))
-                                .addComponent(jLabel5)))
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                            .addComponent(txtCodigo)
-                            .addComponent(spnStock)
-                            .addComponent(txtTipoProducto)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtFechaIngreso)))
+                    .addComponent(jLabel2)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
+                        .addComponent(jLabel5))
+                    .addComponent(jLabel6))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNombreMascota)
+                    .addComponent(txtFechaNac, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .addComponent(txtChip)
+                    .addComponent(spnEdad)
+                    .addComponent(txtRutDueno))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -125,24 +158,23 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtChip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtTipoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txtRutDueno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(spnStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(spnEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtFechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(9, Short.MAX_VALUE))
+                    .addComponent(txtNombreMascota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)))
         );
 
         btnGuardar.setText("Guardar");
@@ -168,7 +200,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        tblProductos.setModel(new javax.swing.table.DefaultTableModel(
+        tblMascota.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"", null, null, null, null},
                 {null, null, null, null, null},
@@ -176,10 +208,10 @@ public class Principal extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Codigo", "Nombre", "Tipo producto", "Stock", "Fecha ingreso"
+                "Chip", "Nombre Mascota", "Edad", "Fecha de nacimiento", "Rut del Dueño"
             }
         ));
-        jScrollPane1.setViewportView(tblProductos);
+        jScrollPane1.setViewportView(tblMascota);
 
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -188,210 +220,562 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        tblDueno.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"", null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Rut", "Nombre", "Apellido", "Edad", "Telefono"
+            }
+        ));
+        jScrollPane2.setViewportView(tblDueno);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Dueño"));
+
+        jLabel7.setText("Rut");
+
+        jLabel8.setText("Nombre");
+
+        jLabel9.setText("Apellido");
+
+        jLabel10.setText("Edad");
+
+        jLabel11.setText("Telefono");
+
+        txtRut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRutActionPerformed(evt);
+            }
+        });
+
+        txtNombre.setEnabled(false);
+
+        txtTelefono.setEnabled(false);
+
+        spnEdad2.setEnabled(false);
+
+        txtApellido.setEnabled(false);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel8))
+                                .addComponent(jLabel10)))
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNombre)
+                            .addComponent(txtRut)
+                            .addComponent(spnEdad2)
+                            .addComponent(txtApellido)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTelefono)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(spnEdad2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        btnModificar2.setText("Modificar");
+        btnModificar2.setEnabled(false);
+        btnModificar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificar2ActionPerformed(evt);
+            }
+        });
+
+        btnGuardar2.setText("Guardar");
+        btnGuardar2.setEnabled(false);
+        btnGuardar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardar2ActionPerformed(evt);
+            }
+        });
+
+        btnEliminar2.setText("Eliminar");
+        btnEliminar2.setEnabled(false);
+        btnEliminar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminar2ActionPerformed(evt);
+            }
+        });
+
+        btnBuscar2.setText("Buscar");
+        btnBuscar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnActualizar)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnModificar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnActualizar))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnModificar2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnGuardar2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnEliminar2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnBuscar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(11, 11, 11)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnActualizar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnGuardar)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnBuscar)
+                            .addComponent(btnActualizar))
                         .addGap(18, 18, 18)
-                        .addComponent(btnEliminar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnModificar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBuscar)
-                        .addGap(18, 18, 18))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnGuardar)
+                            .addComponent(btnModificar)
+                            .addComponent(btnEliminar))
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(btnBuscar2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnGuardar2)
+                            .addComponent(btnModificar2)
+                            .addComponent(btnEliminar2))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
+   // TODO add your handling code here:
+    try {
+        int chip = Integer.parseInt(txtChip.getText()); // Obtiene el chip de la mascota
+        String nombreMascota = txtNombreMascota.getText(); // Obtiene el nombre de la mascota
+        int edad = (int) spnEdad.getValue(); // Convierte la edad de texto a número
+        java.util.Date fechaNacimiento = new SimpleDateFormat("yyyy-MM-dd").parse(txtFechaNac.getText()); // Convierte la fecha de nacimiento de texto a Date
+        String rutDueno = txtRut.getText(); // Obtiene el Rut del dueño
 
-        int codigo = Integer.parseInt(txtCodigo.getText());
-        String nombre = txtNombre.getText();
-        String tipoProducto = txtTipoProducto.getText();
-        int fechaIngreso = Integer.parseInt(txtFechaIngreso.getText()); // Convierte el texto a int
-        int stock = (int) spnStock.getValue(); // Si ya es int, no necesitas castearlo
+        // Creamos el objeto Mascota con los datos obtenidos
+        Mascota mascota = new Mascota(chip, rutDueno, edad, fechaNacimiento, nombreMascota);
 
-    // Aquí deberías tener un método para convertir fechaIngreso a un formato adecuado, si es necesario
-
-    Producto producto = new Producto(tipoProducto, codigo, nombre, stock, fechaIngreso);
-
-        if( pdao.modificarProducto(producto)){
-            JOptionPane.showMessageDialog(this,"producto actualizado" );
-            limpiar();
-            deshabilitar();
-             JOptionPane.showMessageDialog(this, "producto guardado: "+codigo+" "+nombre);
+        // Llamamos al DAO para modificar la mascota en la base de datos
+        if (mdao.modificarMascota(mascota)) {
+            JOptionPane.showMessageDialog(this, "Mascota actualizada");
+            limpiarMascota();
+            deshabilitarMascota();
         } else {
-            JOptionPane.showMessageDialog(this, "producto no atualizado");
-        }    
+            JOptionPane.showMessageDialog(this, "Mascota no actualizada");
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al modificar la mascota: " + e.getMessage());
+    }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-    // Obtenemos el código del formulario
-    int codigo = Integer.parseInt(txtCodigo.getText()); // Convertimos el código a entero
+   // Obtenemos el código (chip) de la mascota desde el formulario
+int chip = Integer.parseInt(txtChip.getText()); // Convertimos el chip a entero
 
-    // Buscamos el producto en la base de datos
-    Producto productoBuscado = pdao.buscarProducto(codigo);
-        //rellenar los campos
-if (productoBuscado != null) {
-    // Rellenar los campos del formulario con los datos del producto encontrado
-    txtNombre.setText(productoBuscado.getNombre()); // Asignar el nombre al campo de texto
-    txtTipoProducto.setText(productoBuscado.getTipoProducto()); // Asignar el tipo de producto al campo de texto
-    txtFechaIngreso.setText(String.valueOf(productoBuscado.getFechaIngreso())); // Convertir la fecha a texto y asignarla
-    spnStock.setValue(productoBuscado.getStock()); // Establecer el valor del stock en el spinner
+// Buscamos la mascota en la base de datos utilizando el DAO
+Mascota mascotaBuscada = mdao.buscarMascota(chip);
+
+// Rellenar los campos con los datos de la mascota encontrada
+if (mascotaBuscada != null) {
+    // Rellenar los campos del formulario con los datos de la mascota encontrada
+    txtNombreMascota.setText(mascotaBuscada.getNombreMascota()); // Asignar el nombre de la mascota
+    txtRutDueno.setText(mascotaBuscada.getRutDueno()); // Asignar el rut del dueño
+    txtFechaNac.setText(new SimpleDateFormat("yyyy-MM-dd").format(mascotaBuscada.getFechaNacimiento())); // Asignar la fecha de nacimiento de la mascota
+    spnEdad.setValue(mascotaBuscada.getEdad()); // Establecer la edad de la mascota en el spinner
 
     // Habilitar los campos del formulario (si es necesario)
-    habilitar();
+    habilitarMascota();
 
-    System.out.println("Formulario rellenado con los datos del producto encontrado.");
+    System.out.println("Formulario rellenado con los datos de la mascota encontrada.");
 } else {
-    // Si no se encuentra el producto, mostrar un mensaje
-    System.out.println("Producto con código " + codigo + " no encontrado.");
-    habilitar2();
+    // Si no se encuentra la mascota, mostrar un mensaje
+    System.out.println("Mascota con chip " + chip + " no encontrada.");
+    habilitarMascota(); // Puedes deshabilitar los campos si es necesario
 }
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+// TODO add your handling code here:
 
-        // RECIBIMOS LA INFO DEL FORMULARIO
-        int codigo = Integer.parseInt(txtCodigo.getText()); // Convertir el código a entero
-        String nombre = txtNombre.getText();
-        String tipoString = txtTipoProducto.getText();
-        int fechaIngreso = Integer.parseInt(txtFechaIngreso.getText()); // Convertir la fecha a entero
-        int stock = (int) spnStock.getValue(); // Obtener el valor del spinner como entero
+try {
+    // RECIBIMOS LA INFO DEL FORMULARIO
+    int chip = Integer.parseInt(txtChip.getText()); // Convertir el chip a entero
+    String nombreMascota = txtNombreMascota.getText(); // Obtener el nombre de la mascota
+    int edad = (int) spnEdad.getValue(); // Obtener la edad desde el spinner
+    String fechaNacString = txtFechaNac.getText(); // Obtener la fecha de nacimiento como texto
 
-        // Validaciones básicas
-        if (nombre.isEmpty() || tipoString.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos.");
-            return;
-        }
+    // Validar si la fecha tiene el formato correcto
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    dateFormat.setLenient(false); // Para evitar que acepte fechas inválidas
+    java.util.Date fechaNacimiento = dateFormat.parse(fechaNacString); // Convertir la fecha de nacimiento de texto a Date
 
-        // Crear un objeto Producto
-        Producto producto = new Producto(tipoString, codigo, nombre, stock, fechaIngreso);
+    String rutDueno = txtRut.getText(); // Obtener el rut del dueño
 
-        // Guardar el producto usando el DAO
-        if (pdao.agregarProducto(producto)) {
-            limpiar(); // Limpia los campos del formulario
-            JOptionPane.showMessageDialog(this, "Producto guardado con éxito: " + codigo);
-        } else {
-            JOptionPane.showMessageDialog(this, "Error: No se pudo guardar el producto.");
-        }
+    // Validaciones básicas
+    if (nombreMascota.isEmpty() || rutDueno.isEmpty() || fechaNacimiento == null) {
+        JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos y la fecha debe ser válida.");
+        return;
+    }
+
+    // Crear un objeto Mascota
+    Mascota mascota = new Mascota(chip, rutDueno, edad, fechaNacimiento, nombreMascota);
+
+    // Guardar la mascota usando el DAO
+    if (mdao.agregarMascota(mascota)) {
+        limpiarMascota(); // Limpia los campos del formulario
+        JOptionPane.showMessageDialog(this, "Mascota guardada con éxito: " + chip + " - " + nombreMascota);
+    } else {
+        JOptionPane.showMessageDialog(this, "Error: No se pudo guardar la mascota.");
+    }
+} catch (ParseException e) {
+    JOptionPane.showMessageDialog(this, "Error al procesar la fecha: " + e.getMessage());
+} catch (NumberFormatException e) {
+    JOptionPane.showMessageDialog(this, "Error con los datos numéricos: " + e.getMessage());
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage());
+}
+
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        String codigo = txtCodigo.getText();
+// TODO add your handling code here:
 
-        if ( pdao.eliminarProducto(codigo) ) {
-            JOptionPane.showMessageDialog(this,"Jugador eliminado!");
-            limpiar();
+        // Obtener el chip de la mascota a eliminar
+        int chip = Integer.parseInt(txtChip.getText()); // Convertir el chip a entero
+
+        // Llamar al DAO para eliminar la mascota
+        if (mdao.eliminarMascota(chip)) {
+            JOptionPane.showMessageDialog(this, "Mascota eliminada con éxito!");
+            limpiarMascota(); // Limpiar los campos del formulario
         } else {
-            JOptionPane.showConfirmDialog(this,"Jugador no eliminado!");
+            JOptionPane.showConfirmDialog(this, "Error: No se pudo eliminar la mascota.");
         }
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO  your handling code here:
         listarDatos();
+        listarDatos2();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
-    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+    private void txtChipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtChipActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoActionPerformed
+    }//GEN-LAST:event_txtChipActionPerformed
+
+    private void txtRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRutActionPerformed
+
+    private void btnModificar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificar2ActionPerformed
+// TODO add your handling code here:
+    try {
+        // Obtener los datos del dueño desde los campos de texto
+        String rut = txtRutDueno.getText(); // Obtener el Rut del dueño
+        String nombre = txtNombre.getText(); // Obtener el nombre del dueño
+        String apellido = txtApellido.getText(); // Obtener el apellido del dueño
+        int edad = (int) spnEdad2.getValue(); // Obtener la edad del dueño desde el JSpinner
+        int telefono = Integer.parseInt(txtTelefono.getText()); // Obtener el teléfono del dueño
+        
+        // Crear el objeto Dueno con los datos obtenidos
+        Dueno dueno = new Dueno(rut, nombre, apellido, edad, telefono);
+
+        // Llamar al DAO para modificar el dueño en la base de datos
+        if (ddao.modificarDueno(dueno)) {
+            JOptionPane.showMessageDialog(this, "Dueño actualizado");
+            limpiarDueno();
+            deshabilitarDueno();
+        } else {
+            JOptionPane.showMessageDialog(this, "Dueño no actualizado");
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al modificar el dueño: " + e.getMessage());
+    }
+    }//GEN-LAST:event_btnModificar2ActionPerformed
+
+    private void btnGuardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar2ActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+
+// RECIBIMOS LA INFO DEL FORMULARIO
+        String rut = txtRutDueno.getText(); // Obtener el rut del dueño
+        String nombre = txtNombre.getText(); // Obtener el nombre del dueño
+        String apellido = txtApellido.getText(); // Obtener el apellido del dueño
+        int edad = (int) spnEdad2.getValue(); // Obtener la edad desde el spinner
+        int telefono = Integer.parseInt(txtTelefono.getText()); // Obtener el teléfono del dueño
+
+        // Validaciones básicas
+        if (rut.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || telefono == 0) {
+            JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos.");
+            return;
+        }
+
+        // Crear un objeto Dueno
+        Dueno dueno = new Dueno(rut, nombre, apellido, edad, telefono);
+
+        // Guardar el dueño usando el DAO
+        if (ddao.agregarDueno(dueno)) {
+            limpiarDueno(); // Limpia los campos del formulario
+            JOptionPane.showMessageDialog(this, "Dueño guardado con éxito: " + rut + " - " + nombre);
+        } else {
+            JOptionPane.showMessageDialog(this, "Error: No se pudo guardar el dueño.");
+        }   
+    }//GEN-LAST:event_btnGuardar2ActionPerformed
+
+    private void btnEliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar2ActionPerformed
+        // TODO add your handling code here:
+
+        // Obtener el rut del dueño a eliminar
+        String rut = txtRutDueno.getText(); // Obtener el rut del dueño desde el formulario
+
+        // Llamar al DAO para eliminar el dueño
+        if (ddao.eliminarDueno(rut)) {
+            JOptionPane.showMessageDialog(this, "Dueño eliminado con éxito!");
+            limpiarDueno(); // Limpiar los campos del formulario
+        } else {
+            JOptionPane.showConfirmDialog(this, "Error: No se pudo eliminar el dueño.");
+        }
+
+    }//GEN-LAST:event_btnEliminar2ActionPerformed
+
+    private void btnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar2ActionPerformed
+        // TODO add your handling code here:
+        
+        // Obtenemos el rut del dueño desde el formulario
+        String rut = txtRut.getText(); // Se obtiene el Rut del dueño
+
+        // Buscamos el dueño en la base de datos utilizando el DAO
+        Dueno duenoBuscado = ddao.buscarDueno(rut);
+
+        // Rellenar los campos con los datos del dueño encontrado
+        if (duenoBuscado != null) {
+            // Rellenar los campos del formulario con los datos del dueño encontrado
+            txtNombre.setText(duenoBuscado.getNombre()); // Asignar el nombre del dueño
+            txtApellido.setText(duenoBuscado.getApellido()); // Asignar el apellido del dueño
+            spnEdad2.setValue(duenoBuscado.getEdad()); // Establecer la edad del dueño en el spinner
+            txtTelefono.setText(String.valueOf(duenoBuscado.getTelefono())); // Asignar el teléfono del dueño
+
+            // Habilitar los campos del formulario (si es necesario)
+            
+
+            System.out.println("Formulario rellenado con los datos del dueño encontrado.");
+        } else {
+            // Si no se encuentra el dueño, mostrar un mensaje
+            System.out.println("Dueño con rut " + rut + " no encontrado.");
+             // Puedes deshabilitar los campos si es necesario
+        }
+
+    }//GEN-LAST:event_btnBuscar2ActionPerformed
+
+    private void txtNombreMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreMascotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreMascotaActionPerformed
+
+    private void txtFechaNacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaNacActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaNacActionPerformed
+
+    private void txtRutDuenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutDuenoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRutDuenoActionPerformed
  public void listarDatos(){
         //CREAR UNA LISTA VACIA QUE RECIBA LOS DATOS
-        List<Producto> lista = pdao.listarProductos();
-        
-       //FORMATEAMOS LA LISTA
+        List<Dueno> lista = ddao.listarDuenos();  
+
+        // FORMATEAMOS LA LISTA
         DefaultTableModel dtm = new DefaultTableModel();
-        dtm.addColumn("Codigo");
+        dtm.addColumn("Rut");
         dtm.addColumn("Nombre");
-        dtm.addColumn("Tipo producto");
-        dtm.addColumn("Stock");
-        dtm.addColumn("Fecha ingreso");
-        for (Producto producto : lista) {
+        dtm.addColumn("Apellido");
+        dtm.addColumn("Edad");
+        dtm.addColumn("Telefono");
+
+        for (Dueno dueno : lista) {
             String[] fila = new String[5];
-           fila[0] = String.valueOf(producto.getCodigo()); // Convertir el código a String
-            fila[1] = producto.getNombre(); // Obtener el nombre del producto
-            fila[2] = producto.getTipoProducto(); // Obtener el tipo de producto
-            fila[3] = String.valueOf(producto.getStock()); // Convertir el stock a String
-            fila[4] = String.valueOf(producto.getFechaIngreso()); // Convertir la fecha a String
+            fila[0] = dueno.getRut(); // Obtener el Rut del dueño
+            fila[1] = dueno.getNombre(); // Obtener el nombre del dueño
+            fila[2] = dueno.getApellido(); // Obtener el apellido del dueño
+            fila[3] = String.valueOf(dueno.getEdad()); // Convertir la edad a String
+            fila[4] = String.valueOf(dueno.getTelefono()); // Convertir el teléfono a String
             dtm.addRow(fila);
         }
-        tblProductos.setModel(dtm);
+
+        tblDueno.setModel(dtm);
     }
  
-     public void limpiar() {
-        txtCodigo.setText("");
-        txtNombre.setText("");
-        txtFechaIngreso.setText("");
-        txtTipoProducto.setText("");
-        spnStock.setValue(0);
+ public void listarDatos2() {
+    // CREAR UNA LISTA VACÍA QUE RECIBA LOS DATOS DE LAS MASCOTAS
+    List<Mascota> lista = mdao.listarMascota();  // Asumiendo que 'mdao' es el objeto DAO para Mascota
+
+    // FORMATEAMOS LA LISTA
+    DefaultTableModel dtm = new DefaultTableModel();
+    dtm.addColumn("Chip");
+    dtm.addColumn("Nombre Mascota");
+    dtm.addColumn("Edad");
+    dtm.addColumn("Fecha Nacimiento");
+    dtm.addColumn("Rut Dueno");
+
+    // Recorremos la lista de mascotas
+    for (Mascota mascota : lista) {
+        String[] fila = new String[5];
+        fila[0] = String.valueOf(mascota.getChip()); // Obtener el chip de la mascota
+        fila[1] = mascota.getNombreMascota(); // Obtener el nombre de la mascota
+        fila[2] = String.valueOf(mascota.getEdad()); // Obtener la edad de la mascota
+        fila[3] = String.valueOf(mascota.getFechaNacimiento()); // Obtener la fecha de nacimiento de la mascota
+        fila[4] = mascota.getRutDueno(); // Obtener el rut del dueño de la mascota
+        dtm.addRow(fila);
+    }
+
+    // Establecer el modelo de la tabla con los datos de las mascotas
+    tblMascota.setModel(dtm); 
+}
+
+ 
+     public void limpiarMascota() {
+        txtChip.setText("");
+        txtFechaNac.setText("yyyy-MM-dd");
+        txtNombreMascota.setText("");
+        txtRutDueno.setText("");
+        spnEdad.setValue(0);
     }
      
-         public void deshabilitar(){
-        txtCodigo.setEnabled(true);
-        btnBuscar.setEnabled(true);
-        txtNombre.setEnabled(false);
-        txtTipoProducto.setEnabled(false);
-        txtFechaIngreso.setEnabled(false);
-        spnStock.setEnabled(false);
-        btnEliminar.setEnabled(false);
-        btnModificar.setEnabled(false);
-        btnGuardar.setEnabled(false);
+    public void limpiarDueno() {
+    txtRutDueno.setText(""); // Limpiar el campo del rut
+    txtNombre.setText(""); // Limpiar el campo del nombre
+    txtApellido.setText(""); // Limpiar el campo del apellido
+    spnEdad2.setValue(0); // Restablecer la edad a 0
+    txtTelefono.setText(""); // Limpiar el campo de teléfono
+}
+     
+    public void deshabilitarMascota() {
+        txtChip.setEnabled(true); // Mantener el campo Chip habilitado
+        btnBuscar.setEnabled(true); // Mantener el botón de búsqueda habilitado
+        txtFechaNac.setEnabled(false); // Deshabilitar el campo de fecha de nacimiento
+        txtRutDueno.setEnabled(false); // Deshabilitar el campo de rut del dueño
+        txtNombreMascota.setEnabled(false); // Deshabilitar el campo de nombre de la mascota
+        spnEdad.setEnabled(false); // Deshabilitar el spinner de edad
+        btnEliminar.setEnabled(false); // Deshabilitar el botón de eliminar
+        btnModificar.setEnabled(false); // Deshabilitar el botón de modificar
+        btnGuardar.setEnabled(false); // Deshabilitar el botón de guardar
     }
+    
+    public void deshabilitarDueno() {
+    txtRutDueno.setEnabled(true); // Mantener el campo Rut habilitado
+    btnBuscar2.setEnabled(true); // Mantener el botón de búsqueda habilitado
+    txtNombre.setEnabled(false); // Deshabilitar el campo de nombre
+    txtApellido.setEnabled(false); // Deshabilitar el campo de apellido
+    spnEdad2.setEnabled(false); // Deshabilitar el spinner de edad
+    txtTelefono.setEnabled(false); // Deshabilitar el campo de teléfono
+    btnEliminar2.setEnabled(false); // Deshabilitar el botón de eliminar
+    btnModificar2.setEnabled(false); // Deshabilitar el botón de modificar
+    btnGuardar2.setEnabled(false); // Deshabilitar el botón de guardar
+}
+
          
-        public void habilitar(){
-        txtCodigo.setEnabled(false);
-        btnBuscar.setEnabled(false);
-        txtNombre.setEnabled(true);
-        txtTipoProducto.setEnabled(true);
-        txtFechaIngreso.setEnabled(true);
-        spnStock.setEnabled(true);
-        btnEliminar.setEnabled(true);
-        btnModificar.setEnabled(true);
-    }
-    public void habilitar2(){
-        txtCodigo.setEnabled(true);
-        btnBuscar.setEnabled(false);
-        txtNombre.setEnabled(true);
-        txtTipoProducto.setEnabled(true);
-        txtFechaIngreso.setEnabled(true);
-        spnStock.setEnabled(true);
-        btnGuardar.setEnabled(true);
-    }
+public void habilitarDueno() {
+    txtRutDueno.setEnabled(false); // Deshabilitar el campo de rut para evitar cambios una vez ingresado
+    btnBuscar2.setEnabled(false); // Deshabilitar el botón de búsqueda después de buscar
+    txtNombre.setEnabled(true); // Habilitar el campo de nombre
+    txtApellido.setEnabled(true); // Habilitar el campo de apellido
+    spnEdad2.setEnabled(true); // Habilitar el spinner de edad
+    txtTelefono.setEnabled(true); // Habilitar el campo de teléfono
+    btnEliminar2.setEnabled(true); // Habilitar el botón de eliminar
+    btnModificar2.setEnabled(true); // Habilitar el botón de modificar
+    btnGuardar2.setEnabled(true); // Habilitar el botón de guardar
+}
+
+public void habilitarMascota() {
+    txtChip.setEnabled(false); // Deshabilitar el campo de chip para evitar cambios una vez ingresado
+    btnBuscar.setEnabled(false); // Deshabilitar el botón de búsqueda después de buscar
+    txtNombreMascota.setEnabled(true); // Habilitar el campo de nombre de la mascota
+    txtFechaNac.setEnabled(true); // Habilitar el campo de fecha de nacimiento
+    spnEdad.setEnabled(true); // Habilitar el spinner de edad
+    btnEliminar.setEnabled(true); // Habilitar el botón de eliminar
+    btnModificar.setEnabled(true); // Habilitar el botón de modificar
+    btnGuardar.setEnabled(true); // Habilitar el botón de guardar
+}
+
     /**
      * @param args the command line arguments
      */
@@ -430,23 +814,40 @@ if (productoBuscado != null) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnBuscar2;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnEliminar2;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnGuardar2;
     private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnModificar2;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner spnStock;
-    private javax.swing.JTable tblProductos;
-    private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtFechaIngreso;
+    private javax.swing.JSpinner spnEdad;
+    private javax.swing.JSpinner spnEdad2;
+    private javax.swing.JTable tblDueno;
+    private javax.swing.JTable tblMascota;
+    private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtChip;
+    private javax.swing.JTextField txtFechaNac;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtTipoProducto;
+    private javax.swing.JTextField txtNombreMascota;
+    private javax.swing.JTextField txtRut;
+    private javax.swing.JTextField txtRutDueno;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
